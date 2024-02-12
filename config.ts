@@ -7,6 +7,7 @@ const config = {
   publicPath: path.join(rootPath, 'public'),
   mongoose: {
     db: 'mongodb://localhost/musicapp',
+    // db: "mongodb://127.0.0.1:27017/musicapp",
   }
 };
 
