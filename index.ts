@@ -11,9 +11,9 @@ const port = 8000;
 app.use(express.static('public'));
 app.use(express.json());
 
-app.use('/artist', artistRouter);
-app.use('/album', albumRouter);
-app.use('/track', trackRouter);
+app.use('/artists', artistRouter);
+app.use('/albums', albumRouter);
+app.use('/tracks', trackRouter);
 
 const run = async () => {
   await mongoose.connect(config.mongoose.db);
