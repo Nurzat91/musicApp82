@@ -10,3 +10,9 @@ export interface AlbumProps{
   year: number;
   image: string | null,
 }
+
+export interface TracksProps{
+  name: string;
+  duration: string;
+  album: string;
+}
