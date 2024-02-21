@@ -1,4 +1,4 @@
-import {Model} from 'mongoose';
+import {Model, Types} from 'mongoose';
 
 export interface ArtistProps{
   name: string;
@@ -17,6 +17,7 @@ export interface TracksProps{
   name: string;
   duration: string;
   album: string;
+  tracksNumber: number;
 }
 
 export interface UserFields {
@@ -32,7 +33,3 @@ interface UserMethods{
 
 type UserModel = Model<UserFields, {}, UserMethods>;
 
-export interface TrackHistoryProps  {
-  user_id: string;
-  track_id: string;
-}

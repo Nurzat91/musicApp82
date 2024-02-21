@@ -49,6 +49,7 @@ trackRouter.post('/',   async (req, res, next) => {
       album: req.body.album,
       name: req.body.name,
       duration: req.body.duration,
+      tracksNumber: req.body.tracksNumber,
     };
 
     const track = new Track(trackData);

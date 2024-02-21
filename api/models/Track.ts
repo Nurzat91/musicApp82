@@ -20,7 +20,12 @@ const TrackSchema = new Schema({
       message: 'Album does not exist!',
     }
   },
+  tracksNumber: {
+    type: Number,
+    required: true,
+  },
 });
+
 
 const Track = model('Track', TrackSchema);
 

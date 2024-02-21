@@ -1,5 +1,4 @@
 
-
 const Artist = () => {
   return (
     <div>
