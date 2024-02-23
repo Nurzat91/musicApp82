@@ -15,15 +15,21 @@ const Album = () => {
   }, [dispatch]);
   return (
     <Grid container spacing={2}>
-      {loading ? <CircularProgress/>: albums.map((album) => (
-        <AlbumsItem
-          key={album._id}
-          id={album._id}
-          title={album.title}
-          year={album.year}
-          image={album.image}
-        />
-      ))}
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <Grid container spacing={2}>
+          {albums.map((album) => (
+            <AlbumsItem
+              key={album._id}
+              id={album._id}
+              title={album.title}
+              year={album.year}
+              image={album.image}
+            />
+          ))}
+        </Grid>
+      )}
     </Grid>
   );
 };

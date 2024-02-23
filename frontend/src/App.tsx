@@ -5,6 +5,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import Artist from "./features/artist/Artist";
 import Album from './features/album/Album';
 import Track from "./features/track/Track";
+import AlbumsItem from './features/album/components/AlbumsItem';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/artists" element={<Artist />} />
             <Route path="/albums" element={<Album />} />
             <Route path="/tracks" element={<Track/>} />
+            <Route path="/tracks/:id" element={<AlbumsItem/>} />
             <Route path="*" element={<ErrorPage/>} />
           </Routes>
         </Container>
