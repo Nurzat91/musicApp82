@@ -3,11 +3,10 @@ import axiosApi from '../../axiosApi';
 import { Artists } from '../../types';
 
 export const fetchArtists = createAsyncThunk<Artists[]>(
-  'artists/fetchAll',
+  'artists/fetchArtists',
   async () => {
     const response = await axiosApi.get<Artists[]>('/artists');
     return response.data;
-
     console.log(response.data);
   }
 );

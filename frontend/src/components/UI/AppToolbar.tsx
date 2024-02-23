@@ -6,6 +6,7 @@ const Link = styled(NavLink)({
   '&:hover': {
     color: 'inherit'
   },
+  marginRight: '20px'
 });
 const AppToolbar = () => {
   return (
@@ -13,7 +14,9 @@ const AppToolbar = () => {
       <Toolbar>
         <Grid container justifyContent="space-between" alignItems="center">
           <Typography variant="h6" component="div">
-            <Link to="/">Home</Link>
+            <Link to="/artists">Artists</Link>
+            <Link to="/albums">Albums</Link>
+            <Link to="/tracks">Tracks</Link>
           </Typography>
         </Grid>
       </Toolbar>

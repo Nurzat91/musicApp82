@@ -1,5 +1,16 @@
 import React from 'react';
-import {CardMedia, Grid, Paper, Typography, styled} from '@mui/material';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+  IconButton,
+  styled,
+  Typography
+} from '@mui/material';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Link } from 'react-router-dom';
 import { apiURL } from '../../../constants';
 
 const ImageCardMedia = styled(CardMedia)({
@@ -21,11 +32,16 @@ const ArtistItem: React.FC<Props> = ({id, name, info, image }) => {
 
   return (
     <Grid item xs={12} sm={6} md={4}>
-      <Paper id={id} elevation={3} style={{ padding: '20px', marginBottom: '20px' }}>
-        <Typography variant="h4" m={2}>{name}</Typography>
+      <Card id={id} sx={{height: '100%'}}>
+        <Typography variant="h5" m={2}>{name}</Typography>
         <ImageCardMedia image={cardImage}/>
-        <Typography variant="body1" m={2}>{info}</Typography>
-      </Paper>
+        <CardContent><Typography variant="h6" m={2} sx={{height: '80px'}}>{info}</Typography></CardContent>
+        <CardActions>
+          <IconButton component={Link} to={'/albums'}>
+            <ArrowForwardIcon/>
+          </IconButton>
+        </CardActions>
+      </Card>
     </Grid>
   );
 };

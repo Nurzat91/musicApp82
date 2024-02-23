@@ -3,6 +3,8 @@ import AppToolbar from './components/UI/AppToolbar';
 import { Routes, Route } from "react-router-dom";
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Artist from "./features/artist/Artist";
+import Album from './features/album/Album';
+import Track from "./features/track/Track";
 
 function App() {
 
@@ -15,7 +17,9 @@ function App() {
       <main>
         <Container maxWidth="xl">
           <Routes>
-            <Route path="/" element={<Artist />} />
+            <Route path="/artists" element={<Artist />} />
+            <Route path="/albums" element={<Album />} />
+            <Route path="/tracks" element={<Track/>} />
             <Route path="*" element={<ErrorPage/>} />
           </Routes>
         </Container>

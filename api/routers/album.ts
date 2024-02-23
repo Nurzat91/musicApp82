@@ -31,7 +31,7 @@ albumRouter.get('/:id', async (req, res, next) => {
       return res.status(404).send({error: 'Wrong ObjectId!'});
     }
 
-    const album = await Album.findById({_id}).populate('artist', 'name');
+    const album = await Album.findById({_id});
 
     if (!album) {
       return res.status(404).send({error: 'Not found!'});
