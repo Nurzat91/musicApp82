@@ -5,9 +5,9 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import Artist from "./features/artist/Artist";
 import Album from './features/album/Album';
 import Track from "./features/track/Track";
-import AlbumsItem from './features/album/components/AlbumsItem';
 import Register from "./features/users/Register";
 import Login from './features/users/Login';
+import TrackHistory from './features/trackHistory/TrackHistory';
 
 function App() {
 
@@ -22,9 +22,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Artist />} />
             <Route path="/artists" element={<Artist />} />
-            <Route path="/albums" element={<Album />} />
-            <Route path="/tracks" element={<Track/>} />
-            <Route path="/tracks/:id" element={<AlbumsItem/>} />
+            <Route path="/albums/:id" element={<Album />} />
+            <Route path="/tracks/:id" element={<Track/>} />
+            <Route path="/track_history" element={<TrackHistory/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<ErrorPage/>} />

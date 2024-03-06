@@ -3,8 +3,6 @@ import { Card, CardMedia, Grid, Typography, styled, CardContent, CardActions, Ic
 import { apiURL } from '../../../constants';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link} from 'react-router-dom';
-import { useAppDispatch} from '../../../app/hooks';
-import { fetchOneAlbum } from '../albumThunks';
 
 const ImageCardMedia = styled(CardMedia)({
   height: 0,
@@ -17,8 +15,6 @@ interface Props {
   image: string | null;
 }
 const AlbumsItem: React.FC<Props>  = ({id, title, year, image}) => {
-
-  const dispatch = useAppDispatch();
 
   let cardImage;
   if (image) {
@@ -34,10 +30,7 @@ const AlbumsItem: React.FC<Props>  = ({id, title, year, image}) => {
         <CardActions>
           <IconButton
             component={Link}
-            to={`/tracks/${id}`}
-            onClick={() => {
-              dispatch(fetchOneAlbum(id));
-            }}
+            to={'/tracks/' + id}
           >
             <ArrowForwardIcon/>
           </IconButton>

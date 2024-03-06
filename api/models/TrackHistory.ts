@@ -1,9 +1,10 @@
 import {Schema, model, Types} from 'mongoose';
 import User from './User';
 import Track from './Track';
+import Artist from './Artist';
 
 const TrackHistorySchema = new Schema({
-  user_id: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
@@ -15,7 +16,7 @@ const TrackHistorySchema = new Schema({
       message: 'Album does not exist!',
     }
   },
-  track_id: {
+  track: {
     type: Schema.Types.ObjectId,
     ref: 'Track',
     required: true,
@@ -29,8 +30,17 @@ const TrackHistorySchema = new Schema({
   },
   datetime: {
     type: Date,
+    required: true,
     default: () => new Date(),
   },
+  artist: {
+    type: Schema.Types.ObjectId,
+    ref: 'Artist',
+    validate: {
+      validator: async (value: Types.ObjectId) => Artist.findById(value),
+      message: 'Artist was not found'
+    }
+  }
 });
 
 const TrackHistory = model('TrackHistory', TrackHistorySchema);

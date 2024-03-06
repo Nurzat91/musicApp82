@@ -19,9 +19,7 @@ const AppToolbar = () => {
       <Toolbar>
         <Grid container justifyContent="space-between" alignItems="center">
           <Typography variant="h6" component="div">
-            <Link to="/artists">Artists</Link>
-            <Link to="/albums">Albums</Link>
-            <Link to="/tracks">Tracks</Link>
+            <Link to="/artists">Home</Link>
           </Typography>
           {user ? (
             <UserMenu  user={user}/>

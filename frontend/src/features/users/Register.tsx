@@ -13,6 +13,7 @@ const Register = () => {
   const loading = useAppSelector(selectRegisterLoading);
   const [state, setState] = useState<RegisterMutation>({
     username: '',
+    displayName: '',
     password: ''
   });
 
@@ -67,6 +68,16 @@ const Register = () => {
                 onChange={inputChangeHandler}
                 error={Boolean(getFieldError('username'))}
                 helperText={getFieldError('username')}
+              />
+            </Grid> <Grid item xs={12}>
+              <TextField
+                label="DisplayName"
+                name="displayName"
+                autoComplete="new-displayName"
+                value={state.displayName}
+                onChange={inputChangeHandler}
+                error={Boolean(getFieldError('displayName'))}
+                helperText={getFieldError('displayName')}
               />
             </Grid>
             <Grid item xs={12}>

@@ -4,15 +4,17 @@ import { CircularProgress, Grid } from '@mui/material';
 import { selectAlbums, selectLoading } from './albumSlice';
 import AlbumsItem from './components/AlbumsItem';
 import { fetchAlbum} from './albumThunks';
+import { useParams } from 'react-router-dom';
 
 const Album = () => {
+  const {id} = useParams() as { id: string };
   const dispatch = useAppDispatch();
   const albums = useAppSelector(selectAlbums);
   const loading = useAppSelector(selectLoading);
 
   useEffect(() => {
-    dispatch(fetchAlbum());
-  }, [dispatch]);
+    dispatch(fetchAlbum(id));
+  }, [dispatch, id]);
   return (
     <Grid container spacing={2}>
       {loading ? (

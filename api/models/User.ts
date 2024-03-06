@@ -14,6 +14,11 @@ const UserSchema = new Schema<UserFields, UserModel, UserMethods>({
     required: true,
     unique: true,
   },
+  displayName: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   password: {
     type: String,
     required: true,

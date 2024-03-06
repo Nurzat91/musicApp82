@@ -4,15 +4,12 @@ export interface Artists{
   info: string;
   image: string | null;
 }
-
-
 export interface Albums{
   _id: string;
   title: string;
   year: number;
   image: string | null;
 }
-export type ApiAlbums = Omit<Albums, 'id'>;
 
 export interface Tracks{
   _id: string;
@@ -23,6 +20,7 @@ export interface Tracks{
 
 export interface RegisterMutation {
   username: string;
+  displayName: string;
   password: string;
 }
 export interface LoginMutation {
@@ -33,6 +31,7 @@ export interface LoginMutation {
 export interface User {
   _id: string;
   username: string;
+  displayName: string;
   token: string;
 }
 
@@ -55,4 +54,15 @@ export interface ValidationError {
 
 export interface GlobalError {
   error: string;
+}
+
+export interface TrackHistory{
+  _id: string;
+  user: string;
+  track: Tracks;
+  artist: Artists;
+  datetime: string;
+}
+export interface HistoryMutation {
+  track: string;
 }

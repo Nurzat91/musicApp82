@@ -3,7 +3,6 @@ import mongoose, {Types} from 'mongoose';
 
 import Album from '../models/Album';
 import {imagesUpload} from '../multer';
-import {AlbumProps} from '../types';
 
 const albumRouter = Router();
 
@@ -45,7 +44,7 @@ albumRouter.get('/:id', async (req, res, next) => {
 
 albumRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
   try {
-    const albumData: AlbumProps = {
+    const albumData = {
       artist: req.body.artist,
       title: req.body.title,
       year: req.body.year,

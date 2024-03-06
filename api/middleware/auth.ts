@@ -8,28 +8,23 @@ export interface RequestWithUser extends Request {
 }
 const auth = async (req: RequestWithUser, res: Response, next: NextFunction) => {
 
-  const headerValue = req.get('Authorization');
+  const request = req as RequestWithUser;
 
-  if(!headerValue){
-    return res.status(401).send({error: 'No Authorization header present'});
-  }
+  const token = request.get('Authorization');
 
-  const [_bearer, token] = headerValue.split(' ');
-
-
-  if(!token){
-    return res.status(401).send({error: 'No token present'});
+  if (!token) {
+    return res.status(401).send({error: 'No token or Authorization header present'});
   }
 
   const user = await User.findOne({token});
 
-  if(!user) {
+  if (!user) {
     return res.status(401).send({error: 'Wrong token!'});
   }
 
   req.user = user;
 
-  next();
+  return next();
 };
 
 export default auth;

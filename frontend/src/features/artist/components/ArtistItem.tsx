@@ -37,7 +37,7 @@ const ArtistItem: React.FC<Props> = ({id, name, info, image }) => {
         <ImageCardMedia image={cardImage}/>
         <CardContent><Typography variant="h6" m={2} sx={{height: '80px'}}>{info}</Typography></CardContent>
         <CardActions>
-          <IconButton component={Link} to={'/albums'}>
+          <IconButton component={Link} to={'/albums/' + id}>
             <ArrowForwardIcon/>
           </IconButton>
         </CardActions>

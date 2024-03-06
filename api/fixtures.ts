@@ -3,6 +3,8 @@ import config from './config';
 import Artist from './models/Artist';
 import Album from './models/Album';
 import Track from './models/Track';
+import {randomUUID} from 'crypto';
+import User from './models/User';
 
 const dropCollection = async (db: mongoose.Connection, collectionName: string) =>{
   try {
@@ -15,22 +17,36 @@ const run = async () => {
   await mongoose.connect(config.mongoose.db);
   const db = mongoose.connection;
 
-  const collections = ['artists', 'albums', 'tracks', 'users', 'track_history'];
+  const collections = ['artists', 'albums', 'tracks', 'users'];
 
   for (const collectionName of collections){
     await dropCollection(db, collectionName);
   }
+
+  const [user1, user2] = await User.create({
+    username: "User1",
+    password: "123",
+    token: randomUUID(),
+    displayName: "Naksu"
+  }, {
+    username: "User2",
+    password: "123",
+    token: randomUUID(),
+    displayName: "Sun"
+  });
 
   const [artistOne, artistSecond] = await Artist.create(
     {
       name: 'Adele',
       image: 'fixtures/images1.jpg',
       info: 'Adele, is an English singer-songwriter.',
+      user: user1._id,
     },
     {
       name: 'Би-2',
       image: 'fixtures/images2.jpg',
       info: 'Рок-группа, образованная в 1988 году в Бобруйске.',
+      user: user2._id,
     },
   );
 

@@ -1,4 +1,4 @@
-import {Model, Types} from 'mongoose';
+import {Model} from 'mongoose';
 
 export interface ArtistProps{
   name: string;
@@ -6,12 +6,6 @@ export interface ArtistProps{
   image: string | null,
 }
 
-export interface AlbumProps{
-  artist: string;
-  title: string;
-  year: number;
-  image: string | null,
-}
 
 export interface TracksProps{
   name: string;
@@ -22,6 +16,7 @@ export interface TracksProps{
 
 export interface UserFields {
   username: string;
+  displayName: string;
   password: string;
   token: string;
 }

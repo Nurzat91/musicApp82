@@ -2,10 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '../../axiosApi';
 import { Tracks } from '../../types';
 
-export const fetchTracks = createAsyncThunk<Tracks[]>(
+export const fetchTracks = createAsyncThunk<Tracks[], string>(
   'tracks/fetchTracks',
-  async () => {
-    const dishesResponse = await axiosApi.get<Tracks[]>('/tracks');
-    return dishesResponse.data;
+  async (id) => {
+    const response = await axiosApi.get('/tracks?album=' + id);
+    return response.data.reverse();
   }
 );
