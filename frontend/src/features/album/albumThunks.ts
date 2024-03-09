@@ -11,20 +11,6 @@ export const fetchAlbum = createAsyncThunk<Albums[], string>(
   }
 );
 
-// export const fetchOneAlbum = createAsyncThunk<ApiAlbums[], string>(
-//   'albums/fetchOneAlbum',
-//   async (id) =>{
-//     const response = await axiosApi.get<ApiAlbums[]>(`/albums/${id}`);
-//     const dataAlbums = response.data;
-//
-//     if(dataAlbums === null){
-//       throw new Error('Not found');
-//     }
-//
-//     return dataAlbums;
-//   }
-// );
-
 export const deleteAlbum = createAsyncThunk<void, string>(
   'albums/deleteAlbum',
   async (id) => {

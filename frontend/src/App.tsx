@@ -28,7 +28,7 @@ function App() {
             <Route path="/artists" element={<Artist />} />
             <Route path="/new-artist" element={(
               <ProtectedRoute isAllowed={user && user.role === 'admin'}>
-                {/*<NewArtist />*/}
+
               </ProtectedRoute>
             )} />
             <Route path="/albums/:id" element={<Album />} />

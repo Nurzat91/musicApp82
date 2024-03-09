@@ -9,7 +9,6 @@ interface UsersState {
   fetchOneLoading: boolean;
   albumDeleting: boolean;
   publishedLoading: boolean;
-  // data: ApiAlbums[];
 }
 const initialState: UsersState = {
   fetchLoading: false,
@@ -17,7 +16,6 @@ const initialState: UsersState = {
   fetchOneLoading: false,
   albumDeleting: false,
   publishedLoading: false,
-  // data: [],
 }
 export const albumsSlice = createSlice({
   name: 'albums',
@@ -34,17 +32,6 @@ export const albumsSlice = createSlice({
     builder.addCase(fetchAlbum.rejected, (state) => {
       state.fetchLoading = false;
     });
-
-    // builder.addCase(fetchOneAlbum.pending, (state) => {
-    //   state.fetchOneLoading = true;
-    // });
-    // builder.addCase(fetchOneAlbum.fulfilled, (state, {payload: data}: PayloadAction<ApiAlbums[]>) => {
-    //   state.fetchOneLoading = false;
-    //   state.data = data;
-    // });
-    // builder.addCase(fetchOneAlbum.rejected, (state) => {
-    //   state.fetchOneLoading = false;
-    // });
 
     builder.addCase(deleteAlbum.pending, (state) => {
       state.albumDeleting = true;
@@ -74,5 +61,3 @@ export const selectAlbums = (state: RootState) => state.albums.items;
 export const selectLoading = (state: RootState) => state.albums.fetchLoading;
 export const removeLoading = (state: RootState) => state.albums.albumDeleting;
 export const publishLoading = (state: RootState) => state.albums.publishedLoading;
-// export const selectOneAlbums= (state: RootState) => state.albums.data;
-// export const selectAlbumsLoading = (state: RootState) => state.albums.fetchOneLoading;
