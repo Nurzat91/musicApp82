@@ -1,7 +1,5 @@
 import {Schema, model, Types} from 'mongoose';
 import Artist from './Artist';
-import User from './User';
-
 
 const AlbumSchema = new Schema({
   title: {
@@ -24,6 +22,11 @@ const AlbumSchema = new Schema({
       },
       message: 'Artist does not exist!',
     }
+  },
+  isPublished: {
+    type: Boolean,
+    required: true,
+    default: false,
   },
 });
 

@@ -3,10 +3,14 @@ import mongoose, {Types} from 'mongoose';
 
 import Album from '../models/Album';
 import {imagesUpload} from '../multer';
+import auth, {RequestWithUser} from '../middleware/auth';
+import role from '../middleware/role';
+import permit from '../middleware/permit';
+import artistRouter from './artist';
 
 const albumRouter = Router();
 
-albumRouter.get('/', async (req, res, next) => {
+albumRouter.get('/', role, async (req, res, next) => {
   try {
     let query = {};
     if (req.query.artist) {
@@ -16,6 +20,8 @@ albumRouter.get('/', async (req, res, next) => {
     const results = await Album.find(query).populate('artist', 'name');
 
     res.send(results);
+
+
   } catch (e) {
     return next(e);
   }
@@ -30,7 +36,7 @@ albumRouter.get('/:id', async (req, res, next) => {
       return res.status(404).send({error: 'Wrong ObjectId!'});
     }
 
-    const album = await Album.findById({_id});
+    const album = await Album.findById({_id}).sort({ year: -1 });
 
     if (!album) {
       return res.status(404).send({error: 'Not found!'});
@@ -62,4 +68,56 @@ albumRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
     next(e);
   }
 });
+
+albumRouter.delete(
+  '/:id',
+  auth,
+  permit('admin'),
+  async (req, res, next) =>{
+    try {
+      let _id: Types.ObjectId;
+      try {
+        _id = new Types.ObjectId(req.params.id);
+      } catch {
+        return res.status(404).send({error: 'Wrong ObjectId!'});
+      }
+
+      const remove = await Album.findOneAndDelete({_id});
+
+      if (!remove) {
+        return res.status(404).send({error: 'Not found!'});
+      }
+
+      res.send(remove);
+    } catch (e) {
+      next(e);
+    }
+  }
+);
+
+albumRouter.patch(
+  '/:id/togglePublished',
+  auth,
+  permit('admin'),
+  async (req, res, next) =>{
+    try {
+      let _id: Types.ObjectId;
+      try {
+        _id = new Types.ObjectId(req.params.id);
+      } catch {
+        return res.status(404).send({error: 'Wrong ObjectId!'});
+      }
+
+      const create = await Album.findById({_id});
+
+      if (!create) {
+        return res.status(404).send({error: 'Not found!'});
+      }
+
+      res.send(create);
+    } catch (e) {
+      next(e);
+    }
+  }
+);
 export default albumRouter;

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '../../axiosApi';
-import { Albums} from '../../types';
+import { Albums, GlobalError } from '../../types';
+import { isAxiosError } from 'axios';
 
 export const fetchAlbum = createAsyncThunk<Albums[], string>(
   'albums/fetchAlbum',
@@ -23,3 +24,24 @@ export const fetchAlbum = createAsyncThunk<Albums[], string>(
 //     return dataAlbums;
 //   }
 // );
+
+export const deleteAlbum = createAsyncThunk<void, string>(
+  'albums/deleteAlbum',
+  async (id) => {
+    try {
+      await axiosApi.delete('/albums/' + id);
+    } catch (e) {
+      if (isAxiosError(e) && e.response && e.response.status === 403) {
+        return alert(e.response.data.error as GlobalError);
+      }
+      throw (e);
+    }
+  }
+);
+
+export const publishedAlbum = createAsyncThunk<void, string>(
+  'albums/publishedAlbum',
+  async (id) => {
+    await axiosApi.patch('/albums/' + id + '/togglePublished');
+  }
+);

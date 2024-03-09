@@ -19,6 +19,7 @@ export interface UserFields {
   displayName: string;
   password: string;
   token: string;
+  role: string;
 }
 
 interface UserMethods{

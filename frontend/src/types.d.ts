@@ -3,12 +3,14 @@ export interface Artists{
   name: string;
   info: string;
   image: string | null;
+  isPublished: boolean;
 }
 export interface Albums{
   _id: string;
   title: string;
   year: number;
   image: string | null;
+  isPublished: boolean;
 }
 
 export interface Tracks{
@@ -16,6 +18,7 @@ export interface Tracks{
   name: string;
   duration: string;
   tracksNumber: number;
+  isPublished: boolean;
 }
 
 export interface RegisterMutation {
@@ -33,6 +36,7 @@ export interface User {
   username: string;
   displayName: string;
   token: string;
+  role: string;
 }
 
 export interface RegisterResponse {
